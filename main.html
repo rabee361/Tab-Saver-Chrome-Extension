@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="main.css">
-  <script src="main.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <script src="scripts/main.js" defer></script>
 </head>
 <body>
-  <h1>Tab Saver Extension</h1>
-  <button id="saveTab">Save Tab</button>
-  <button id="removeTab">Remove Tab</button>
+  <div class="container">
+    <div id="savedTabs" class="saved-tabs-container"></div>
+    <div class="main-content">
+      <h1>Tab Saver Extension</h1>
+      <button id="saveTab" class="btn save-btn">Save Tab</button>
+      <button id="removeTab" class="btn remove-btn">Remove Tab</button>
+    </div>
+  </div>
 </body>
 </html>
