@@ -1,7 +1,7 @@
 {
   "name": "Tab Saver Extension",
   "description": "Save and manage your tabs",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 3,
   "icons": {
     "16": "images/main-16.png",
@@ -11,17 +11,21 @@
   },
   "permissions": [
     "tabs",
-    "storage"
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ],
   "action": {
     "default_popup": "main.html"
   },
   "content_scripts": [
     {
-      "js": ["scripts/content.js"],
+      "js": ["scripts/main.js", "scripts/content.js"],
       "matches": [
-        "https://developer.chrome.com/docs/extensions/*",
-        "https://developer.chrome.com/docs/webstore/*"
+        "http://*/*",
+        "https://*/*"
       ]
     }
   ]

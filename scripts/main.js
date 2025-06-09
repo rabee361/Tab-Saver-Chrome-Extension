@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add event listeners to buttons
   document.getElementById('saveTab').addEventListener('click', saveCurrentTab);
   document.getElementById('removeTab').addEventListener('click', removeSelectedTab);
-  document.getElementById('showOnScreen').addEventListener('click', showTabsOnScreen);
 });
 
 // Save current tab
@@ -95,58 +94,3 @@ function removeSelectedTab() {
   });
 }
 
-
-// Generic function to display tabs in a given container
-function showTabsOnScreen(tabsArray, containerElement) {
-  if (!containerElement) {
-    console.error('showTabsOnScreen: containerElement is not provided or is null.');
-    return;
-  }
-  containerElement.innerHTML = ''; // Clear container
-
-  if (!tabsArray || tabsArray.length === 0) {
-    const noTabsMessage = document.createElement('p');
-    noTabsMessage.textContent = 'No tabs to display';
-    containerElement.appendChild(noTabsMessage);
-    return;
-  }
-
-  tabsArray.forEach(tab => {
-    const tabElement = document.createElement('div');
-    tabElement.className = 'tab-tag'; // Class for styling
-    if (tab.id) { 
-        tabElement.dataset.id = tab.id;
-    }
-    if (tab.url) {
-        tabElement.dataset.url = tab.url;
-    }
-
-    // Add favicon if available
-    if (tab.favicon) { 
-        const faviconImage = document.createElement('img'); // Renamed to avoid conflict
-        faviconImage.src = tab.favicon;
-        faviconImage.alt = ''; // Alt text for accessibility
-        faviconImage.style.width = '16px'; 
-        faviconImage.style.height = '16px';
-        faviconImage.style.marginRight = '8px';
-        faviconImage.style.verticalAlign = 'middle'; // Align favicon nicely with text
-        tabElement.appendChild(faviconImage);
-    }
-
-    // Add title (fallback to URL if title is missing)
-    const titleSpan = document.createElement('span'); // Renamed to avoid conflict
-    titleSpan.className = 'tab-tag-title'; // Class for styling
-    titleSpan.textContent = tab.title || tab.url || 'Untitled Tab'; 
-    tabElement.appendChild(titleSpan);
-
-    // Add click event to open the tab, only if URL is present
-    if (tab.url) {
-        tabElement.addEventListener('click', function() {
-            chrome.tabs.create({ url: tab.url });
-        });
-        tabElement.style.cursor = 'pointer'; // Indicate it's clickable
-    }
-
-    containerElement.appendChild(tabElement);
-  });
-}
