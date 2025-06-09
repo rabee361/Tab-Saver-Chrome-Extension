@@ -53,18 +53,27 @@ function loadSavedTabs() {
       tabElement.className = 'tab-tag';
       tabElement.dataset.id = tab.id;
       tabElement.dataset.url = tab.url;
-      
+
       // Add favicon
       const favicon = document.createElement('img');
       favicon.src = tab.favicon;
       tabElement.appendChild(favicon);
-      
+
       // Add title
       const title = document.createElement('span');
       title.className = 'tab-tag-title';
       title.textContent = tab.title;
       tabElement.appendChild(title);
-      
+
+      // Add a remove btn
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'remove-tag';
+      removeBtn.innerHTML = '<i class="fi fi-rr-trash"></i>';
+      removeBtn.addEventListener('click', function() {
+        removeTab(tab.id);
+      });
+      tabElement.appendChild(removeBtn);
+
       // Add click event to open the tab
       tabElement.addEventListener('click', function() {
         chrome.tabs.create({url: tab.url});
@@ -94,3 +103,18 @@ function removeSelectedTab() {
   });
 }
 
+
+
+function removeTab(id) {
+  chrome.storage.local.get(['savedTabs'], function(result) {
+    let savedTabs = result.savedTabs || [];
+    
+    // Filter out the tab with the specified ID
+    savedTabs = savedTabs.filter(tab => tab.id !== id);
+    
+    // Save updated list
+    chrome.storage.local.set({savedTabs: savedTabs}, function() {
+      loadSavedTabs(); // Refresh the display
+    });
+  });
+}

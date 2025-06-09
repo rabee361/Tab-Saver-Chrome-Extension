@@ -27,64 +27,6 @@ window.addEventListener('load', function() {
     ballContainer.className = 'tab-saver-ball-container';
     containerElement.appendChild(ballContainer);
 
-    // Add style to the page
-    const style = document.createElement('style');
-    style.textContent = `
-      .tab-saver-balls-container {
-        position: fixed;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 70px;
-        background-color: rgba(245, 245, 245, 0.9);
-        padding: 10px;
-        border-radius: 0 10px 10px 0;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        z-index: 10000;
-        cursor: grab;
-      }
-      
-      .tab-saver-ball-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-      }
-      
-      .tab-saver-ball {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #e0e0e0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: transform 0.2s;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      }
-      
-      .tab-saver-ball:hover {
-        transform: scale(1.1);
-        background-color: #d0d0d0;
-      }
-      
-      .tab-saver-ball img {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-      
-      .tab-saver-no-tabs {
-        color: #666;
-        font-size: 12px;
-        text-align: center;
-      }
-    `;
-    document.head.appendChild(style);
-
     // Create balls for each saved tab
     tabsArray.forEach(tab => {
       const ballElement = document.createElement('div');
@@ -106,14 +48,15 @@ window.addEventListener('load', function() {
 
       // Add tooltip with title
       ballElement.title = tab.title || tab.url || 'Untitled Tab';
-
       // Add click event to open the tab
-      if (tab.url) {
-          ballElement.addEventListener('click', function() {
-              chrome.tabs.create({ url: tab.url });
+      ballElement.addEventListener('click', function() {
+          // Send message to background script to open the tab
+          chrome.runtime.sendMessage({
+              action: "openTab", 
+              url: tab.url
           });
-      }
-
+      });
+  
       ballContainer.appendChild(ballElement);
     });
     

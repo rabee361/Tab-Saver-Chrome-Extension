@@ -1,107 +1,164 @@
-@import url('https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   min-width: 350px;
+  max-width: 400px;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
 .container {
   display: flex;
-}
-
-.action-container {
-  display: flex;
-}
-
-.ball-container {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  background-color: green;
-  z-index: 1000;
-}
-
-.tab-ball {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: red;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 10000;
-}
-
-.tab-ball:hover {
-  transform: scale(1.1);
-  background-color: #e0e0e0;
-}
-
-.tab-ball img {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.saved-tabs-container {
-  width: 100px;
-  min-height: 100%;
-  background-color: #f5f5f5;
-  padding: 10px;
-  overflow-y: auto;
-}
-
-.main-content {
   padding: 15px;
 }
 
+header {
+  text-align: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 0;
+  color: #1a73e8;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #5f6368;
+  font-weight: 500;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
 .btn {
-  padding: 4px 6px;
-  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
 
 .save-btn {
-  display: flex;
-  gap: 5px;
-  text-wrap: no-wrap;
-  background-color: #4CAF50;
+  background-color: #1a73e8;
   color: white;
 }
 
+.save-btn:hover {
+  background-color: #1765cc;
+}
+
 .remove-btn {
-  background-color: #f44336;
+  background-color: #ea4335;
   color: white;
+}
+
+.remove-btn:hover {
+  background-color: #d33426;
+}
+
+.tabs-section {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  padding: 12px;
+}
+
+.saved-tabs-container {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.saved-tabs-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.saved-tabs-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.saved-tabs-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.saved-tabs-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }
 
 .tab-tag {
   display: flex;
   align-items: center;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  padding: 5px;
+  background-color: #f1f3f4;
+  border-radius: 6px;
+  padding: 10px;
   margin-bottom: 8px;
-  font-size: 12px;
+  font-size: 13px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tab-tag:hover {
+  background-color: #e8eaed;
 }
 
 .tab-tag img {
   width: 16px;
   height: 16px;
-  margin-right: 5px;
+  margin-right: 10px;
+  border-radius: 2px;
 }
 
 .tab-tag-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex: 1;
+}
+
+.remove-tag {
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-size: 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.remove-tag:hover {
+  scale: 1.1;
+  color: red;
+}
+
+/* Empty state styling */
+.saved-tabs-container p {
+  text-align: center;
+  color: #5f6368;
+  font-style: italic;
+  padding: 20px 0;
 }

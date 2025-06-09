@@ -2,17 +2,23 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
   <script src="scripts/main.js" defer></script>
 </head>
 <body>
   <div class="container">
-    <div id="savedTabs" class="saved-tabs-container"></div>
-    <div class="main-content">
+    <header>
       <h1>Tab Saver Extension</h1>
-      <div class="action-container">
-        <button id="saveTab" class="btn save-btn">Save Tab <i class="fi fi-rr-bookmark"></i></button>
-        <button id="removeTab" class="btn remove-btn">Remove Tab <i class="fi fi-rr-trash"></i></button>
-      </div>
+    </header>
+    
+    <div class="action-buttons">
+      <button id="saveTab" class="btn save-btn">Save Tab <i class="fi fi-rr-bookmark"></i></button>
+      <button id="removeTab" class="btn remove-btn">Remove Tab <i class="fi fi-rr-trash"></i></button>
+    </div>
+    
+    <div class="tabs-section">
+      <h2>Saved Tabs</h2>
+      <div id="savedTabs" class="saved-tabs-container"></div>
     </div>
   </div>
 </body>
