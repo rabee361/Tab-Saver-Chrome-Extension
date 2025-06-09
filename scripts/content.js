@@ -6,6 +6,7 @@
 window.addEventListener('load', function() {
   // Create container for the balls
   const containerElement = document.createElement('div');
+  containerElement.setAttribute('id', 'draggableTabContainer');
   containerElement.className = 'tab-saver-balls-container';
   document.body.appendChild(containerElement);
   
@@ -40,6 +41,7 @@ window.addEventListener('load', function() {
         border-radius: 0 10px 10px 0;
         box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         z-index: 10000;
+        cursor: grab;
       }
       
       .tab-saver-ball-container {
@@ -114,5 +116,13 @@ window.addEventListener('load', function() {
 
       ballContainer.appendChild(ballElement);
     });
+    
+    // Make the container draggable after it's created
+    // We'll use the dragElement function from drag.js
+    setTimeout(() => {
+      if (typeof dragElement === 'function') {
+        dragElement(document.getElementById('draggableTabContainer'));
+      }
+    }, 100);
   });
-});
+})

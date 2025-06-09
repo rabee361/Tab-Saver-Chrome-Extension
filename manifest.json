@@ -22,7 +22,7 @@
   },
   "content_scripts": [
     {
-      "js": ["scripts/main.js", "scripts/content.js"],
+      "js": ["scripts/drag.js", "scripts/content.js"],
       "matches": [
         "http://*/*",
         "https://*/*"
